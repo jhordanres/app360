@@ -6,8 +6,11 @@ import 'package:sync360app/features/auth/presentation/pages/login_page.dart';
 import 'package:sync360app/features/products/application/products_bloc.dart';
 import 'package:sync360app/features/products/data/product_repository_imp.dart';
 import 'package:sync360app/features/products/presentation/pages/products_page.dart';
+import 'package:sync360app/features/products/presentation/pages/splash_page.dart';
+import 'package:sync360app/shared/app_theme.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   final dio = Dio(BaseOptions(
     baseUrl: 'http://34.176.59.20:8069',
     connectTimeout: const Duration(seconds: 10),
@@ -43,15 +46,14 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'CRUD 360 App',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-            useMaterial3: true,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-          ),
-          initialRoute: '/login',
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme, 
+          themeMode: ThemeMode.light,
+          initialRoute: '/',
           routes: {
-            '/login': (context) => LoginPage(),
-            '/products': (context) => ProductsPage(),
+            '/': (context) => const SplashPage(),
+            '/login': (context) => const LoginPage(),
+            '/products': (context) => const ProductsPage(),
           },
         ),
       ),

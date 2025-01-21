@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/services.dart'; // Import necesario para controlar la entrada de texto
+import 'package:sync360app/core/widgets/custom_elevated_button.dart';
+import 'package:sync360app/core/widgets/custom_text_field.dart'; // Importa tu widget CustomTextField
 import '../../application/products_bloc.dart';
 import '../../application/products_event.dart';
 import '../../data/product_model.dart';
@@ -52,20 +55,21 @@ class _CreateProductPageState extends State<CreateProductPage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            TextField(
+            CustomTextField(
               controller: nameController,
-              decoration: const InputDecoration(labelText: 'Product Name'),
+              labelText: 'Product Name',
+              keyboardType: TextInputType.text,
             ),
             const SizedBox(height: 16),
-            TextField(
+            CustomTextField(
               controller: priceController,
-              decoration: const InputDecoration(labelText: 'Price'),
+              labelText: 'Price',
               keyboardType: TextInputType.number,
             ),
             const SizedBox(height: 32),
-            ElevatedButton(
+            CustomElevatedButton(
+              text: 'Save Product',
               onPressed: saveProduct,
-              child: const Text('Save Product'),
             ),
           ],
         ),
